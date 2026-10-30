@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Event Horizon Tech — early team-site snapshot
 
-## Getting Started
+An early Next.js agency-site prototype with a black-hole hero, service/roadmap
+content and a custom image carousel.
 
-First, run the development server:
+![Early team site running locally after the readability correction](docs/artifacts/showcase/desktop.png)
 
-```bash
+## History and contribution
+
+Application baseline `a752d6f` is the initial commit shared with the later
+[event-horizon fork](https://github.com/boyInShadows/event-horizon) and
+[EventHorzionTeam repository](https://github.com/EventHorzionTeam/event-horizon).
+Git history attributes this initial implementation to Ramtin; later team history
+and branding remain credited. These repositories represent related versions of
+the same website, rather than separate completed products.
+
+This presentation pass reuses the reviewed unused-dependency and dark-theme
+corrections from the later fork. It does not import the later site's carousel
+design or additional sections. The header labels and Get Started control remain
+placeholders, and a current commercial deployment has not been verified.
+
+## Run this version
+
+Verified with Node.js 24.11.1 and npm 11.6.2 on Windows. The lockfile pins Next.js
+15.3.5 and React 19.1.0; Tailwind CSS 4 and GSAP are also included. No application
+credentials are needed. Google font downloads need build-time network access.
+
+```sh
+git clone https://github.com/boyInShadows/EventHorizonTech.git
+cd EventHorizonTech
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000>. Existing checks and production preview:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```sh
+npm run lint
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The [carousel](app/components/mainPage/section3/imageSlider/index.js) manages
+its own previous/next state; the unused React 16–18-only react-slider dependency
+was removed so normal installation works with React 19. Retained versions were
+not upgraded.
 
-## Learn More
+## Verification and limits
 
-To learn more about Next.js, take a look at the following resources:
+On 2026-10-30, locked installation, lint and production build passed. Edge verified
+previous/next carousel positions and light text under both system theme preferences.
+Desktop and emulated mobile views loaded without page errors. Mobile still
+overflows: a 390px viewport produced a 435px document. Build retains its Turbopack
+config deprecation warning; there is no test script or quality CI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A dated npm audit reported 14 advisories (2 critical, 9 high, 2 moderate, 1 low).
+Full accessibility, physical devices and production security/deployment remain
+unverified. Framework, team and asset rights remain unchanged.
